@@ -1,46 +1,60 @@
 import React from 'react';
+import Style from './About.module.scss';
 import Terminal from "./Terminal";
-import { Box } from "@mui/material";
-import { info } from "../../info/Info";
+import {Box} from "@mui/material";
+import {info} from "../../info/Info";
+
 
 export default function About() {
+    const firstName = info.firstName.toLowerCase()
+
+    function aboutMeText() {
+        return <>
+            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cat
+                about{firstName} </p>
+            <p><span style={{color: info.baseColor}}>about{firstName} <span
+                className={Style.green}>(main)</span> $ </span>
+                {info.bio}
+            </p>
+        </>;
+    }
+
+    function skillsText() {
+        return <>
+            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills/tools
+            </p>
+            <p><span style={{color: info.baseColor}}>skills/tools <span
+                className={Style.green}>(main)</span> $</span> ls</p>
+            <p style={{color: info.baseColor}}> Proficient With</p>
+            <ul className={Style.skills}>
+                {info.skills.proficientWith.map((proficiency, index) => <li key={index}>{proficiency}</li>)}
+            </ul>
+            <p style={{color: info.baseColor}}> Exposed To</p>
+            <ul className={Style.skills}>
+                {info.skills.exposedTo.map((skill, index) => <li key={index}>{skill}</li>)}
+            </ul>
+        </>;
+    }
+
+    function miscText() {
+        return <>
+            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd
+                hobbies/interests</p>
+            <p><span style={{color: info.baseColor}}>hobbies/interests <span
+                className={Style.green}>(main)</span> $</span> ls</p>
+            <ul>
+                {info.hobbies.map((hobby, index) => (
+                    <li key={index}><Box component={'span'} mr={'1rem'}>{hobby.emoji}</Box>{hobby.label}</li>
+                ))}
+            </ul>
+        </>;
+    }
+
     return (
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
-            {info.about.map((project, index) => (
-                <Terminal key={index}>
-                    <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                        <a href={project.live} target="_blank" rel="noopener noreferrer" style={{ position: 'relative', width: '500px', height: 'auto' }}>
-                            <Box 
-                                sx={{
-                                    position: 'relative',
-                                    width: '100%',  // Set to 100% or a specific size
-                                    height: 'auto',
-                                    '&:hover .hover-image': {
-                                        opacity: 1,
-                                    },
-                                    '& .hover-image': {
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        width: '100%',
-                                        height: '100%',
-                                        opacity: 0,
-                                        transition: 'opacity 0.3s ease',
-                                    },
-                                    '& .default-image': {
-                                        width: '100%',
-                                        height: '100%',
-                                    }
-                                }}
-                            >
-                                <img src={project.image} alt={'mockup'} className="default-image" />
-                                <img src={project.hoverImage} alt={'hover mockup'} className="hover-image" />
-                            </Box>
-                        </a>
-                    </Box>
-                </Terminal>
-            ))}
+            <Terminal text={aboutMeText()}/>
+            <Terminal text={skillsText()}/>
+            <Terminal text={miscText()}/>
         </Box>
-    );
+    )
 }
-
