@@ -11,6 +11,8 @@ import mock9 from "../img/Mock9.gif";
 import mock10 from "../img/Mock10.gif";
 import mock11 from "../img/Mock11.gif";
 import mock12 from "../img/Mock12.gif";
+import mock13 from "../img/Mock13.gif";
+import mock14 from "../img/Mock14.gif";
 import writer from "../img/writer.gif";
 import bio from "../img/bio.gif";
 
@@ -72,6 +74,11 @@ export const info = {
             live: "https://docs.google.com/document/d/1hnWOmrDr5fP3yvo8j3Z6EzjXYpD1erJkpj5zMfYhToc/edit",
             image: mock11,
             hoverImage: mock12,
+        },
+        {
+            live: "https://docs.google.com/document/d/10QOhR1aFefJt2GvjFq6G4qc1nvi17u6G1qfRTJmLUjE/edit?usp=sharing",
+            image: mock13,
+            hoverImage: mock14,
         }
     ],
     about: [
