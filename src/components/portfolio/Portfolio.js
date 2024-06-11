@@ -11,7 +11,7 @@ export default function Portfolio() {
                     <Grid 
                         item 
                         xs={12} 
-                        md={6} 
+                        md={8} 
                         key={index}
                         sx={{ 
                             padding: '1rem', // Add padding if needed
